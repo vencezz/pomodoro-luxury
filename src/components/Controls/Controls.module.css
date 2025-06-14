@@ -1,0 +1,297 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-6);
+  padding: var(--spacing-4);
+  width: 100%;
+  max-width: 400px;
+}
+
+.primaryControls {
+  display: flex;
+  justify-content: center;
+}
+
+.secondaryControls {
+  display: flex;
+  gap: var(--spacing-4);
+  align-items: center;
+}
+
+/* Button Base Styles */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  font-family: var(--font-family-primary);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Focus management - remove focus outline after click */
+.button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Better focus visible for keyboard navigation */
+.button:focus-visible {
+  outline: 3px solid var(--color-black);
+  outline-offset: 2px;
+}
+
+/* Remove focus immediately after mousedown */
+.button:active {
+  outline: none;
+}
+
+/* Prevent button from holding focus after click */
+.button:focus:not(:focus-visible):not(:hover) {
+  background: inherit;
+  box-shadow: inherit;
+}
+
+/* Primary Button */
+.button.primary {
+  padding: var(--spacing-4) var(--spacing-8);
+  font-size: var(--text-lg);
+  background: var(--color-black);
+  color: var(--color-white);
+  border-radius: var(--radius-2xl);
+  min-width: 140px;
+  height: 56px;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(0);
+}
+
+.button.primary:hover {
+  background: var(--color-gray-800);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.button.primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+.button.primary:focus-visible {
+  outline-color: var(--color-white);
+}
+
+/* Secondary Button */
+.button.secondary {
+  padding: var(--spacing-3) var(--spacing-6);
+  font-size: var(--text-base);
+  background: var(--color-white);
+  color: var(--color-gray-700);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-xl);
+  min-width: 100px;
+  height: 44px;
+  box-shadow: var(--shadow-sm);
+}
+
+.button.secondary:hover {
+  background: var(--color-gray-50);
+  border-color: var(--color-gray-300);
+  color: var(--color-black);
+  box-shadow: var(--shadow-md);
+}
+
+.button.secondary:active {
+  background: var(--color-gray-100);
+  transform: scale(0.98);
+}
+
+/* Button Icons */
+.icon {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--transition-fast);
+}
+
+.button.primary .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.button:hover .icon {
+  transform: scale(1.1);
+}
+
+/* Button Text */
+.buttonText {
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+.button.primary .buttonText {
+  font-weight: 600;
+}
+
+/* Keyboard Shortcuts Section */
+.shortcuts {
+  display: flex;
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-2);
+  padding: var(--spacing-4);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-gray-200);
+}
+
+.shortcut {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-sm);
+  color: var(--color-gray-600);
+}
+
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 var(--spacing-2);
+  font-family: var(--font-family-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-gray-700);
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .controls {
+    gap: var(--spacing-4);
+    padding: var(--spacing-3);
+  }
+  
+  .secondaryControls {
+    gap: var(--spacing-3);
+  }
+  
+  .button.primary {
+    min-width: 120px;
+    height: 48px;
+    font-size: var(--text-base);
+  }
+  
+  .button.secondary {
+    min-width: 80px;
+    height: 40px;
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: var(--text-sm);
+  }
+  
+  .shortcuts {
+    gap: var(--spacing-4);
+    padding: var(--spacing-3);
+  }
+  
+  .shortcut {
+    font-size: var(--text-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .controls {
+    gap: var(--spacing-3);
+  }
+  
+  .secondaryControls {
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+  
+  .button.secondary {
+    width: 100%;
+  }
+  
+  .shortcuts {
+    flex-direction: column;
+    gap: var(--spacing-2);
+    text-align: center;
+  }
+  
+  .shortcut {
+    justify-content: center;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .button {
+    min-height: 44px; /* Minimum touch target size */
+  }
+  
+  .button:hover {
+    transform: none;
+    box-shadow: inherit;
+  }
+  
+  .button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .button.primary {
+    background: var(--color-black);
+    border: 2px solid var(--color-black);
+  }
+  
+  .button.secondary {
+    border: 2px solid var(--color-black);
+    color: var(--color-black);
+  }
+  
+  .shortcuts {
+    background: var(--color-white);
+    border: 2px solid var(--color-black);
+  }
+  
+  .kbd {
+    border: 2px solid var(--color-black);
+    background: var(--color-white);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+  
+  .button:hover {
+    transform: none;
+  }
+  
+  .icon {
+    transition: none;
+  }
+  
+  .button:hover .icon {
+    transform: none;
+  }
+}
