@@ -77,87 +77,82 @@ const Timer = ({
       aria-live="polite"
       aria-label={`${getSessionTypeText()}, ${formattedTime} remaining`}
     >
-      {/* Progress Ring */}
-      <div className={styles.progressRing}>
-        <svg 
-          className={styles.progressSvg}
-          width="280" 
-          height="280"
-          viewBox="0 0 280 280"
-          aria-hidden="true"
-        >
-          {/* Background circle */}
-          <circle
-            cx="140"
-            cy="140"
-            r={radius}
-            fill="none"
-            stroke="var(--color-gray-200)"
-            strokeWidth="8"
-          />
-          {/* Progress circle */}
-          <circle
-            cx="140"
-            cy="140"
-            r={radius}
-            fill="none"
-            stroke="var(--color-black)"
-            strokeWidth="8"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={strokeDashoffset}
-            className={styles.progressCircle}
-            transform="rotate(-90 140 140)"
-            style={{
-              transition: isActive ? 'stroke-dashoffset 1s linear' : 'stroke-dashoffset 0.3s ease'
-            }}
-          />
-        </svg>
-        
-        {/* Timer Content */}
-        <div className={styles.timerContent}>
-          {/* Session Info */}
-          <div className={styles.sessionInfo}>
-            <span className={styles.sessionType}>
-              {getSessionTypeText()}
-            </span>
-            <span className={styles.sessionNumber}>
-              Session {currentSession}
-            </span>
-          </div>
+      {/* Progress Ring Container - ONLY PROGRESS INDICATOR NEEDED */}
+      <div className={styles.progressContainer}>
+        <div className={styles.progressRing}>
+          <svg 
+            className={styles.progressSvg}
+            viewBox="0 0 280 280"
+            aria-hidden="true"
+          >
+            {/* Background circle */}
+            <circle
+              cx="140"
+              cy="140"
+              r={radius}
+              fill="none"
+              stroke="var(--color-gray-200)"
+              strokeWidth="8"
+            />
+            {/* Progress circle */}
+            <circle
+              cx="140"
+              cy="140"
+              r={radius}
+              fill="none"
+              stroke="var(--color-black)"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={strokeDashoffset}
+              className={styles.progressCircle}
+              transform="rotate(-90 140 140)"
+              style={{
+                transition: isActive ? 'stroke-dashoffset 1s linear' : 'stroke-dashoffset 0.3s ease'
+              }}
+            />
+          </svg>
           
-          {/* Time Display */}
-          <div className={styles.timeDisplay}>
-            <span 
-              className={styles.time}
-              role="timer"
-              aria-label={`${minutes} minutes ${seconds} seconds`}
-            >
-              {formattedTime}
-            </span>
-          </div>
-          
-          {/* Status */}
-          <div className={styles.status}>
-            <span className={styles.statusText}>
-              {getStatusText()}
-            </span>
-            {isActive && (
-              <div className={styles.statusIndicator}>
-                <div className={styles.pulse}></div>
+          {/* Timer Content */}
+          <div className={styles.timerContent}>
+            {/* Session Info */}
+            <div className={styles.sessionInfo}>
+              <div className={styles.sessionType}>
+                {getSessionTypeText()}
               </div>
-            )}
+              <div className={styles.sessionNumber}>
+                Session {currentSession}
+              </div>
+            </div>
+            
+            {/* Time Display */}
+            <div className={styles.timeDisplay}>
+              <div 
+                className={styles.time}
+                role="timer"
+                aria-label={`${minutes} minutes ${seconds} seconds`}
+              >
+                {formattedTime}
+              </div>
+            </div>
+            
+            {/* Status */}
+            <div className={styles.status}>
+              <div className={styles.statusText}>
+                {getStatusText()}
+              </div>
+              {isActive && (
+                <div className={styles.statusIndicator}>
+                  <div className={styles.pulse}></div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
       
-      {/* Progress Bar (Mobile) */}
-      <div className={styles.progressBarMobile}>
-        <div 
-          className={styles.progressFill}
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
+      {/* REMOVED: Progress Bar - tidak perlu karena sudah ada ring */}
+      {/* Progress bar dihapus total */}
     </div>
   );
 };

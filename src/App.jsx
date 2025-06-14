@@ -231,12 +231,16 @@ function App() {
     <div className={styles.app} role="main">
       <Layout>
         <div className={styles.container}>
+          {/* Header with "by rapoi" credit */}
           <header className={styles.header}>
             <h1 className={styles.title}>
               Pomodoro
             </h1>
-            <p className={styles.subtitle}>
+            <p className={styles.credit}>
               by rapoi
+            </p>
+            <p className={styles.subtitle}>
+              Focus with elegance
             </p>
           </header>
 
